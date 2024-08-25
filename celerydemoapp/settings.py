@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from celery.schedules import crontab
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,4 +138,10 @@ CELERY_RESULT_BACKEND = REDIS_URL
 
 from .celery import app as celery_app
 
+# CELERY_BEAT_SCHEDULE = {
+#     "run_payment_settlement": {
+#         "task": "celerydemoapp.tasks.run_payment_settlement",
+#         "schedule": timedelta(seconds=10),  # Run every 10 seconds
+#     },
+# }
 __all__ = ("celery_app",)

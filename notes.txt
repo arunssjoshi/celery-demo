@@ -24,3 +24,7 @@ docker-compose restart flower
 
 FMS celery command explanation:
 https://chatgpt.com/g/g-AvuUPIhj6-rv/c/bcd00788-1f47-4995-af85-02dc914ff1d1
+
+Branches
+----------
+feature-celery-beat   > celery sample

@@ -38,6 +38,17 @@ services:
       - db
       - redis
 
+  celery-beat:
+    build: .
+    command: celery -A celerydemoapp beat --loglevel=info
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+    restart: always
+
+
   flower:
     build: .
     command: celery -A celerydemoapp flower --port=5555
