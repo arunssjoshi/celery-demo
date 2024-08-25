@@ -1,0 +1,26 @@
+notes.txt
+
+docker exec -it celery-demo-web-1 /bin/bash
+docker exec -it celery-demo-web-1 python manage.py system_test
+
+docker exec -it celery-demo-web-1 python manage.py celery_test basic /bin/bash
+docker exec -it celery-demo-web-1 python manage.py celery_test email /bin/bash
+
+
+
+
+Redis console
+--------------
+keys "celery-task-meta-*"
+
+EVAL "for _,k in ipairs(redis.call('keys', ARGV[1])) do redis.call('del', k) end" 0 "celery-task-meta-*"
+
+
+Flower:
+-------
+http://localhost:5555/tasks
+docker-compose restart flower
+
+
+FMS celery command explanation:
+https://chatgpt.com/g/g-AvuUPIhj6-rv/c/bcd00788-1f47-4995-af85-02dc914ff1d1
