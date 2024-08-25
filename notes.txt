@@ -6,7 +6,13 @@ docker exec -it celery-demo-web-1 python manage.py system_test
 docker exec -it celery-demo-web-1 python manage.py celery_test basic /bin/bash
 docker exec -it celery-demo-web-1 python manage.py celery_test email /bin/bash
 
+docker-compose restart celery
+docker-compose restart celery celery-beat
 
+View celery logs
+-----------------
+docker logs -f celery-demo-celery-1
+docker logs -f celery-demo-celery_email-1
 
 
 Redis console
@@ -24,3 +30,8 @@ docker-compose restart flower
 
 FMS celery command explanation:
 https://chatgpt.com/g/g-AvuUPIhj6-rv/c/bcd00788-1f47-4995-af85-02dc914ff1d1
+
+Branches
+----------
+feature-celery-beat   > celery sample
+feaure-multi-worker   > celery with multiple workers

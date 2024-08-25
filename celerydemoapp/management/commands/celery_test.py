@@ -20,7 +20,14 @@ class Command(BaseCommand):
         print(f"Task ID: {result.id}")
         print(f"Result: {result.get(timeout=10)}")
 
-        # for i in range(1, 10):
-        #     result = add.delay(i, 6)  # Call the Celery task asynchronously
-        #     print(f"Task ID: {result.id}")
-        # print(f"Result: {result.get(timeout=1000)}")
+        for i in range(1, 10):
+            result = add.delay(i, 6)  # Call the Celery task asynchronously
+            print(f"Task ID: {result.id}")
+        print(f"Result: {result.get(timeout=1000)}")
+
+    def email(self, options):
+        print("send email")
+        from celerydemoapp.mytasks.order_tasks import send_email_task
+
+        for i in range(1, 3):
+            send_email_task.delay("arunss@yopmail.com", "Testing Email", "Hellow")

@@ -38,6 +38,33 @@ services:
       - db
       - redis
 
+  celery_email:
+    build: .
+    command: celery -A celerydemoapp worker --loglevel=info -Q email_queue -n email_worker@%h
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+
+  celery_sms:
+    build: .
+    command: celery -A celerydemoapp worker --loglevel=info -Q sms_queue -n sms_worker@%h
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+
+  celery_whatsapp:
+    build: .
+    command: celery -A celerydemoapp worker --loglevel=info -Q whatsapp_queue -n whatsapp_worker@%h
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
+      
   flower:
     build: .
     command: celery -A celerydemoapp flower --port=5555
