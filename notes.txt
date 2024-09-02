@@ -21,6 +21,23 @@ Flower:
 http://localhost:5555/tasks
 docker-compose restart flower
 
+Redis commander:
+-----------------
+http://localhost:8081/
+
 
 FMS celery command explanation:
 https://chatgpt.com/g/g-AvuUPIhj6-rv/c/bcd00788-1f47-4995-af85-02dc914ff1d1
+
+
+
+
+requirements.txt
+-----------------
+
+Django>=3.2,<4.0
+psycopg2-binary>=2.8
+redis
+requests
+celery>=5.2.0
+flower>=1.0.0
